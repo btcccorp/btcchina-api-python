@@ -52,7 +52,7 @@ class BTCChina():
         # If ID is not passed as a key of post_data, just use tonce
         if not 'id' in post_data:
             post_data['id']=tonce
- 
+
         pd_hash=self._get_params_hash(post_data)
  
         # must use b64 encode        
@@ -94,13 +94,13 @@ class BTCChina():
         return self._private_request(post_data)
  
     def buy(self,price,amount,post_data={}):
-        post_data['method']='buyOrder'
-        post_data['params']=[price,amount]
+        post_data['method']='buyOrder2'
+        post_data['params']=["{0:.4f}".format(round(price,4)),"{0:.4f}".format(round(amount,4))]
         return self._private_request(post_data)
  
     def sell(self,price,amount,post_data={}):
-        post_data['method']='sellOrder'
-        post_data['params']=[price,amount]
+        post_data['method']='sellOrder2'
+        post_data['params']=["{0:.4f}".format(round(price,4)),"{0:.4f}".format(round(amount,4))]
         return self._private_request(post_data)
  
     def cancel(self,order_id,post_data={}):
