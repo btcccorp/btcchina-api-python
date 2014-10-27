@@ -30,7 +30,8 @@ class BTCChina():
                     param_string=re.sub("[\[\] ]","",str(pdict[f]))
                     param_string=re.sub("'",'',param_string)
                     param_string=re.sub("True",'1',param_string)
-                    param_string=re.sub("False",'',param_string)                    
+                    param_string=re.sub("False",'',param_string)
+                    param_string=re.sub("None",'',param_string)
                     pstring+=f+'='+param_string+'&'
                 else:
                     pstring+=f+'='+str(pdict[f])+'&'
