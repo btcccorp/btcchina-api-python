@@ -89,34 +89,34 @@ class BTCChina():
         post_data['params']=[]
         return self._private_request(post_data)
  
-    def get_market_depth2(self,limit=10,post_data={}):
+    def get_market_depth2(self,limit=10, market="btccny", post_data={}):
         post_data['method']='getMarketDepth2'
-        post_data['params']=[limit]
+        post_data['params']=[limit, market]
         return self._private_request(post_data)
  
-    def buy(self,price,amount,post_data={}):
+    def buy(self, price, amount, market="btccny", post_data={}):
         amountStr = "{0:.4f}".format(round(amount,4))
         post_data['method']='buyOrder2'
         if price == None:
             priceStr = None
         else:
             priceStr = "{0:.4f}".format(round(price,4))
-        post_data['params']=[priceStr, amountStr]
+        post_data['params']=[priceStr, amountStr, market]
         return self._private_request(post_data)
  
-    def sell(self,price,amount,post_data={}):
+    def sell(self, price, amount, market="btccny", post_data={}):
         amountStr = "{0:.4f}".format(round(amount,4))
         post_data['method']='sellOrder2'
         if price == None:
             priceStr = None
         else:
             priceStr = "{0:.4f}".format(round(price,4))
-        post_data['params']=[priceStr, amountStr]
+        post_data['params']=[priceStr, amountStr, market]
         return self._private_request(post_data)
  
-    def cancel(self,order_id,post_data={}):
+    def cancel(self,order_id, market = "btccny", post_data={}):
         post_data['method']='cancelOrder'
-        post_data['params']=[order_id]
+        post_data['params']=[order_id, market]
         return self._private_request(post_data)
  
     def request_withdrawal(self,currency,amount,post_data={}):
@@ -129,14 +129,14 @@ class BTCChina():
         post_data['params']=[currency,pending]
         return self._private_request(post_data)
  
-    def get_orders(self,id=None,open_only=True,post_data={}):
+    def get_orders(self,id=None,open_only=True,market="btccny",details=True,post_data={}):
         # this combines getOrder and getOrders
         if id is None:
             post_data['method']='getOrders'
-            post_data['params']=[open_only]
+            post_data['params']=[open_only, market]
         else:
             post_data['method']='getOrder'
-            post_data['params']=[id]
+            post_data['params']=[id, market,details]
         return self._private_request(post_data)
  
     def get_withdrawals(self,id='BTC',pending=True,post_data={}):
