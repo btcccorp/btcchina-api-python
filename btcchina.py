@@ -95,13 +95,23 @@ class BTCChina():
         return self._private_request(post_data)
  
     def buy(self,price,amount,post_data={}):
+        amountStr = "{0:.4f}".format(round(amount,4))
         post_data['method']='buyOrder2'
-        post_data['params']=["{0:.4f}".format(round(price,4)),"{0:.4f}".format(round(amount,4))]
+        if price == None:
+            priceStr = None
+        else:
+            priceStr = "{0:.4f}".format(round(price,4))
+        post_data['params']=[priceStr, amountStr]
         return self._private_request(post_data)
  
     def sell(self,price,amount,post_data={}):
+        amountStr = "{0:.4f}".format(round(amount,4))
         post_data['method']='sellOrder2'
-        post_data['params']=["{0:.4f}".format(round(price,4)),"{0:.4f}".format(round(amount,4))]
+        if price == None:
+            priceStr = None
+        else:
+            priceStr = "{0:.4f}".format(round(price,4))
+        post_data['params']=[priceStr, amountStr]
         return self._private_request(post_data)
  
     def cancel(self,order_id,post_data={}):
