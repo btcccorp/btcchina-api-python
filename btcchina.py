@@ -154,3 +154,13 @@ class BTCChina():
         post_data['method']='getTransactions'
         post_data['params']=[trans_type,limit]
         return self._private_request(post_data)
+
+    def get_archived_order(self,id,market='btccny',withdetail=False,post_data={}):
+    	post_data['method']='getArchivedOrder'
+    	post_data['params']=[id,market,withdetail]
+    	return self._private_request(post_data)
+
+    def get_archived_orders(self,market='btccny',limit=200,less_than_order_id=0,withdetail=False,post_data={}):
+    	post_data['method']='getArchivedOrders'
+    	post_data['params']=[market,limit,less_than_order_id,withdetail]
+    	return self._private_request(post_data)

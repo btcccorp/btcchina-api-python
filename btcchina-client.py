@@ -58,3 +58,14 @@ bc = btcchina.BTCChina(access_key,secret_key)
     Limit the number of transactions, default value is 10 '''
 #result = bc.get_transactions('all',10)
 #print result
+
+'''get archived order returns a specified id order which is archived,
+   the market default to "BTCCNY" and the "withdetail" default to false,if "withdetail" is specified to "true", the result will include the order's detail'''
+#result = bc.get_archived_order(2,'btccny',False)
+#print result
+
+'''get archived orders returns the orders which order id is less than the specified "less_than_order_id",and the returned amount is defined in "limit",
+   default value is 200, if "withdetail" is specified to "true",
+   the result will include to orders' detail'''
+#result = bc.get_archived_orders('btccny',200,10000,False)
+#print result
